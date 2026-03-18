@@ -4,7 +4,9 @@ import { Router } from 'express';
 
 const router = Router();
 
-router.get('/projects', projectController.getProjects);
-router.get('/skills', skillController.getSkills);
+router.get('/projects', projectController.getProjectController);
+router.get('/skills', skillController.getSkillController);
+
+
 
 export default router;

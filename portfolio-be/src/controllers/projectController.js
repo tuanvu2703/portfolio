@@ -1,8 +1,8 @@
-import projectService from '../services/projectService.js';
+import ProjectService from '../services/projectService.js';
 
-const getProjects = async (req, res) => {
+async function getProjectController(req, res){
     try {
-        const projects = await projectService.getAllProjects();
+        const projects = await ProjectService.getAllProjectService();
         res.status(200).json(projects);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -10,5 +10,5 @@ const getProjects = async (req, res) => {
 };
 
 export default {
-    getProjects
+    getProjectController
 };

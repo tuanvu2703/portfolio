@@ -1,6 +1,6 @@
 import db from '../models/index.js';
 
-const getAllProjects = async () => {
+async function getAllProjectService() {
 	try {
 		const projects = await db.Project.findAll({
 			order: [['createdAt', 'DESC']]
@@ -14,5 +14,5 @@ const getAllProjects = async () => {
 
 
 export default {
-	getAllProjects
+	getAllProjectService
 };

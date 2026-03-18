@@ -1,15 +1,8 @@
-import { Geist_Mono, Inter } from "next/font/google"
-
+import { inter, montserrat } from "@/components/ui/font"
+import NavBar from "@/components/NavBar"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
-
-const inter = Inter({subsets:['latin'],variable:'--font-sans'})
-
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-})
+import { cn } from "@/lib/utils"
 
 export default function RootLayout({
   children,
@@ -17,13 +10,19 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", inter.variable)}
-    >
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          "flex min-h-screen flex-col scroll-smooth",
+          inter.variable,
+          montserrat.variable,
+          inter.className
+        )}
+      >
+        <ThemeProvider>
+          <NavBar />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )

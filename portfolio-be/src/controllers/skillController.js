@@ -1,8 +1,11 @@
 import skillService from "../services/skillService.js";
 
-const getSkills = async (req, res) => {
+async function getSkillController(req, res) {
     try {
-        const skills = await skillService.getAllSkills();
+        const { name } = req.query;
+        const skills = name
+            ? await skillService.MySkills(name)
+            : await skillService.getAllSkillService();
         res.status(200).json(skills);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -10,5 +13,5 @@ const getSkills = async (req, res) => {
 };
 
 export default {
-    getSkills
+    getSkillController
 };

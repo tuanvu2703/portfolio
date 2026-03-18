@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "start": "node src/app.js",
-  "dev": "nodemon src/app.js",
-  "db:setup":"npx sequelize db:create && npx sequelize db:migrate",
-  "db:reset":"npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate",
-  "db:seed":"npx sequelize db:seed:all",
-  "db:drop": "npx sequelize db:drop"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "db:setup": "npx sequelize db:create && npx sequelize db:migrate",
+    "db:reset": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate",
+    "db:seed": "npx sequelize db:seed:all",
+    "db:drop": "npx sequelize db:drop"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +24,7 @@
     "sequelize": "^6.37.8"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.28.5",
     "nodemon": "^3.1.14",
     "sequelize-cli": "^6.6.5"
   }

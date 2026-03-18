@@ -1,9 +1,12 @@
 "use client"
-import { Menubar, MenubarMenu } from "@/components/ui/menubar"
+import { Menubar, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar"
 import { useTheme } from "next-themes"
 import { Sun, Moon, Expand, Shrink } from "lucide-react"
 import * as React from "react"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
+import Link from "next/link"
+import { ZenTokyoZoo } from "@/components/ui/font"
 
 export default function NavBar() {
   const { theme, setTheme } = useTheme()
@@ -50,8 +53,27 @@ export default function NavBar() {
   }
 
   return (
-    <Menubar className="sticky top-0 w-full border-none bg-background/70 py-6 shadow-none backdrop-blur-md backdrop-saturate-150">
+    <Menubar className="sticky top-0 z-50 w-full border-none bg-background/70 p-7 shadow-none backdrop-blur-md backdrop-saturate-150">
       <MenubarMenu>
+        <Link href="/">
+          <span
+            className={`rounded-2xl px-4 py-2 text-3xl font-bold text-sky-500 hover:bg-primary/10 ${ZenTokyoZoo.className}`}
+          >
+            Z
+          </span>
+        </Link>
+        <div className="flex gap-4 rounded-lg px-4 text-sm font-medium">
+          <Link className="rounded-md p-2 hover:bg-primary/10" href="">
+            About
+          </Link>
+          <Link className="rounded-md p-2 hover:bg-primary/10" href="">
+            Projects
+          </Link>
+          <Link className="rounded-md p-2 hover:bg-primary/10" href="">
+            Contact
+          </Link>
+        </div>
+
         <Button
           variant="outline"
           size="icon"

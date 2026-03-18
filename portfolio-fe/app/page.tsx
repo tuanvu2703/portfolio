@@ -1,9 +1,11 @@
-import NavBar from "@/components/NavBar"
+import HeroSection from "@/components/HeroSection"
+import Introduction from "@/components/Introduction"
+
 export default function Page() {
   return (
-    <main className="min-h-svh">
-      <NavBar />
-      <div className="w-full"> ádasdasdsa</div>
+    <main className="relative overflow-x-clip pb-8">
+      <HeroSection />
+      <Introduction />
     </main>
   )
 }
