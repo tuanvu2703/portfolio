@@ -3,7 +3,7 @@
 export default (sequelize, DataTypes) => {
   const ProjectSkill = sequelize.define('ProjectSkill', {
     project_id: {
-      type: DataTypes.UUID,
+      type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
       references: {
@@ -12,7 +12,7 @@ export default (sequelize, DataTypes) => {
       }
     },
     skill_id: {
-      type: DataTypes.UUID,
+      type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
       references: {

@@ -1,13 +1,12 @@
 "use client"
-import { Menubar, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar"
+import { Menubar, MenubarMenu } from "@/components/ui/menubar"
 import { useTheme } from "next-themes"
 import { Sun, Moon, Expand, Shrink } from "lucide-react"
 import * as React from "react"
 import { Button } from "@/components/ui/button"
-import Image from "next/image"
 import Link from "next/link"
 import { ZenTokyoZoo } from "@/components/ui/font"
-
+import type { MouseEvent } from "react"
 export default function NavBar() {
   const { theme, setTheme } = useTheme()
   // mounted dung de tranh hydration mismatch luc SSR/CSR.
@@ -51,7 +50,19 @@ export default function NavBar() {
       }
     }
   }
+  const handleScrollToSection = (
+    event: MouseEvent<HTMLAnchorElement>,
+    sectionId: string
+  ) => {
+    event.preventDefault()
+    window.history.replaceState(null, "", `/#${sectionId}`)
+    const section = document.getElementById(sectionId)
+    section?.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
 
+  const handleScrollToProjects = (event: MouseEvent<HTMLAnchorElement>) => {
+    handleScrollToSection(event, "projects")
+  }
   return (
     <Menubar className="sticky top-0 z-50 w-full border-none bg-background/70 p-7 shadow-none backdrop-blur-md backdrop-saturate-150">
       <MenubarMenu>
@@ -66,7 +77,11 @@ export default function NavBar() {
           <Link className="rounded-md p-2 hover:bg-primary/10" href="">
             About
           </Link>
-          <Link className="rounded-md p-2 hover:bg-primary/10" href="">
+          <Link
+            className="rounded-md p-2 hover:bg-primary/10"
+            href=""
+            onClick={handleScrollToProjects}
+          >
             Projects
           </Link>
           <Link className="rounded-md p-2 hover:bg-primary/10" href="">

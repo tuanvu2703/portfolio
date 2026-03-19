@@ -13,7 +13,11 @@ export default {
         type: Sequelize.STRING
       },
       description: {
-        type: Sequelize.TEXT
+        type: Sequelize.ARRAY(Sequelize.TEXT),
+        defaultValue: [], 
+      },
+      role: {
+        type: Sequelize.STRING
       },
       thumbnail_url: {
         type: Sequelize.STRING

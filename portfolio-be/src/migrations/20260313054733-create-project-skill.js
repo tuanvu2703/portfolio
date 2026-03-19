@@ -5,6 +5,7 @@ export default {
     await queryInterface.createTable('Project_skills', {
       project_id: {
         type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
         primaryKey: true,
         references: {
@@ -15,6 +16,7 @@ export default {
       },
       skill_id: {
         type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
         primaryKey: true,
         references: {

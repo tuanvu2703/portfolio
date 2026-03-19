@@ -3,13 +3,13 @@
 export default (sequelize, DataTypes) => {
   const Project = sequelize.define('Project', {
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false
     },
     title: DataTypes.STRING,
-    description: DataTypes.TEXT,
+    description: DataTypes.ARRAY(DataTypes.TEXT),
+    role: DataTypes.STRING,
     thumbnail_url: DataTypes.STRING,
     github_url: DataTypes.STRING,
     live_url: DataTypes.STRING,

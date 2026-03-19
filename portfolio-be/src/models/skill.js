@@ -3,8 +3,7 @@
 export default (sequelize, DataTypes) => {
   const Skill = sequelize.define('Skill', {
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      type: DataTypes.STRING,
       primaryKey: true,
       allowNull: false
     },

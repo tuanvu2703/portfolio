@@ -8,36 +8,6 @@ export default {
       // 1. Đồ án trường: Hệ thống quản lý phòng thực hành
       // Tech: PHP, MySQL, HTML, CSS, JavaScript
       // ==========================================
-      {
-        project_id: "9ffb975c-0903-4d9a-b4e3-bcab3a1206f4",
-        skill_id: "f831fdce-f0c1-4701-a5b6-a68350c537eb",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      }, // PHP
-      {
-        project_id: "9ffb975c-0903-4d9a-b4e3-bcab3a1206f4",
-        skill_id: "a6684ed9-0eeb-4ed4-9560-ec0c3be1b98a",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      }, // MySQL
-      {
-        project_id: "9ffb975c-0903-4d9a-b4e3-bcab3a1206f4",
-        skill_id: "7255a300-a096-43b5-8dd7-6e1dae413462",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      }, // HTML
-      {
-        project_id: "9ffb975c-0903-4d9a-b4e3-bcab3a1206f4",
-        skill_id: "dc066cbd-0faa-46ba-b341-3502eb644fa7",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      }, // CSS
-      {
-        project_id: "9ffb975c-0903-4d9a-b4e3-bcab3a1206f4",
-        skill_id: "3512de7d-e1de-4fcc-a204-531f4558c023",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      }, // JavaScript
 
       // ==========================================
       // 2. Đồ án trường: Website xem phim trực tuyến

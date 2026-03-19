@@ -1,7 +1,9 @@
+import Skill from "@/types/skill.type"
+
 interface Project {
   id: string
   title: string
-  description: string
+  description: string[]
   thumbnail_url: string
   github_url: string
   live_url: string | null
@@ -9,6 +11,7 @@ interface Project {
   end_date: string
   createdAt: string
   updatedAt: string
+  Skills: Skill[]
 }
 
 export default Project

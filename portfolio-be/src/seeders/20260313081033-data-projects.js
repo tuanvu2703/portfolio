@@ -5,24 +5,14 @@ export default {
   async up(queryInterface, Sequelize) {
     const projects = [
       {
-        id: Sequelize.literal('gen_random_uuid()'),
-        title: 'Đồ án trường: Hệ thống quản lý phòng thực hành',
+        id: '6616d5fa-23ff-4b13-9db1-80f24d628082',
+        title: 'Eimu – Online Movie Streaming Platform | School Project',
         description: [
-          "Xây dựng giao diện trực quan, dễ sử dụng bằng HTML, CSS và JavaScript; kết hợp với PHP để xử lý logic và truy vấn dữ liệu. Xây dựng hệ thống quản lý phòng thực hành, cho phép giảng viên đặt lịch sử dụng phòng, quản lý các khu, phòng và theo dõi lịch sử sử dụng phòng thực hành trong trường học. Triển khai ứng dụng trên localhost bằng XAMPP trong môi trường mô phỏng thực tế. Sử dụng MySQL để thiết kế cơ sở dữ liệu quan hệ, tối ưu truy vấn và đảm bảo tính toàn vẹn dữ liệu.",
+          "Engineered a highly responsive frontend for a movie streaming platform using Next.js and Tailwind CSS, ensuring optimal load speeds through SSR.",
+          "Connected and consumed RESTful APIs to deliver seamless viewer experiences, supporting search, categorization.",
+          "Developed interactive, user-centric features including robust authorization, personalized favorite saving, ratings, and a comment system."
         ],
-        thumbnail_url: '',
-        github_url: '',
-        start_date: new Date('2023-09'),
-        end_date: new Date('2023-12'),
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        id: Sequelize.literal('gen_random_uuid()'),
-        title: 'Đồ án trường: Website xem phim trực tuyến',
-        description: [
-          "Thiết kế UI hiện đại, dễ sử dụng với TailwindCSS, giao diện người dùng thân thiện, dễ sử dụng và tối ưu. Xây dựng một nền tảng xem phim trực tuyến, hỗ trợ tìm kiếm, phân loại và xem phim theo từng tập. Tích hợp hệ thống phân quyền người dùng và tính năng lưu phim yêu thích. Tích hợp hệ thống phân quyền người dùng (admin và người xem), cùng chức năng bình luận, đánh giá phim. Phát triển giao diện người dùng bằng React (NextJS), tối ưu tốc độ tải trang nhờ khả năng render phía server (SSR).",
-        ],
+        role: 'Frontend Developer',
         thumbnail_url: '',
         github_url: 'https://github.com/TinLite/eimu',
         start_date: new Date('2024-01'),
@@ -31,12 +21,16 @@ export default {
         updatedAt: new Date()
       },
       {
-        id: Sequelize.literal('gen_random_uuid()'),
-        title: 'Đồ án trường: Website Mạng xã hội',
+        id: '502e9987-e82f-4c7b-bd40-06abe10fd050',
+        title: 'Nemo – Social Network Platform | School Project',
         description: [
-          "Tích hợp hệ thống xác thực và phân quyền (authentication/authorization)   Thiết kế hệ thống frontend hiện đại, tối ưu trải nghiệm người dùng bằng ReactJS kết hợp TailwindCS. Xây dựng một nền tảng mạng xã hội với các chức năng chính như: đăng bài viết (hình ảnh, video), bình luận, nhắn tin thời gian thực, báo cáo bài viết, quản lý người dùng, hệ thống thông báo, hệ thống kết bạn, tìm kiếm bạn và bài viết,... Quản lý mã nguồn với Git, phối hợp làm việc nhóm chặt chẽ, chia task và merge code hiệu quả",
+          "the frontend development using ReactJS and Tailwind CSS, building a scalable and user-centric social platform.",
+          "Consumed and managed complex RESTful APIs (served by a NestJS/MongoDB backend) to implement multimedia posting, user interactions, and robust JWT authentication.",
+          "Integrated WebSocket to establish real-time features, successfully delivering live messaging and instant notification systems.",
+          "Collaborated within an agile team environment, utilizing Git for strict version control and efficient code integration.",
         ],
-        thumbnail_url: '',
+        role: 'Frontend Developer (100% Frontend & API Integration)',
+        thumbnail_url: 'https://i.ibb.co/gMLpMh9r/image-project.jpg',
         github_url: 'https://github.com/tuanvu2703/Nemo-social-network',
         start_date: new Date('2024-09'),
         end_date: new Date('2025-05'),
@@ -44,12 +38,15 @@ export default {
         updatedAt: new Date()
       },
        {
-        id: Sequelize.literal('gen_random_uuid()'),
-        title: 'Thực tập tại Trung tâm Công nghệ phần mềm Trường Đại học Cần Thơ (CUSC): Xây dựng hệ thống quản lý thời khoá biểu cho trường học',
+        id: 'a3df6410-fb8b-42f7-be98-96fd3fe34945',
+        title: ' Timetable Management System | Internship Project',
         description: [
-          "Tích hợp Thuật toán Di truyền (Genetic Algorithm) bằng Python để tự động hóa việc xếp lịch, xử lý thành công các ràng buộc cứng/mềm (tránh trùng phòng, trùng giờ giảng viên) và tự động phát hiện . Thiết kế và phát triển hệ thống RESTful API với Node.js/Express, thao tác trên cơ sở dữ liệu PostgreSQL chuẩn hóa (19 bảng) thông qua Sequelize ORM. Triển khai hệ thống xác thực và phân quyền (RBAC - Role-Based Access Control) bằng JWT bảo mật cho 4 nhóm người dùng (Admin, Cán bộ, Giảng viên, Sinh viên). Xây dựng giao diện responsive với React & Vite kết hợp TailwindCSS, cung cấp Dashboard quản lý riêng biệt theo vai trò và tích hợp Socket.io để cập nhật thông báo realtime.",
+          "Database Design & Backend Development: Architected a normalized relational database schema in PostgreSQL and built scalable RESTful APIs using Node.js/Express and Sequelize ORM.", 
+          "Frontend & Real-time UI: Developed a responsive, role-specific management dashboard using React and Vite, integrating Socket.io for real-time notification updates.",
+          "Comprehensive Management Module: Implemented robust end-to-end CRUD functionalities to manage core academic entities (users, classes, subjects, semesters, lecturers, students, rooms, and training programs), streamlining administrative workflows.",
+          "Bulk Data Processing: Developed Excel data import and export features, enabling efficient mass data entry for the PostgreSQL database and generating structured reports for system administrators."
         ],
-        thumbnail_url: '',
+        thumbnail_url: 'https://i.ibb.co/YBMKKP4s/Screenshot-19-3-2026-18724-localhost.jpg',
         github_url: '',
         start_date: new Date('2025-06'),
         end_date: new Date('2025-09'),

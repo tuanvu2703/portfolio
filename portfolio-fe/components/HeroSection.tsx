@@ -12,11 +12,22 @@ import type { MouseEvent } from "react"
 export default function HeroSection() {
   const [isLoading, setIsLoading] = useState(true)
 
-  const handleScrollDown = (event: MouseEvent<HTMLAnchorElement>) => {
+  const handleScrollToSection = (
+    event: MouseEvent<HTMLAnchorElement>,
+    sectionId: string
+  ) => {
     event.preventDefault()
-    window.history.pushState(null, "", "/#introduction")
-    const introductionSection = document.getElementById("introduction")
-    introductionSection?.scrollIntoView({ behavior: "smooth", block: "start" })
+    window.history.replaceState(null, "", `/#${sectionId}`)
+    const section = document.getElementById(sectionId)
+    section?.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
+
+  const handleScrollDown = (event: MouseEvent<HTMLAnchorElement>) => {
+    handleScrollToSection(event, "introduction")
+  }
+
+  const handleScrollToProjects = (event: MouseEvent<HTMLAnchorElement>) => {
+    handleScrollToSection(event, "projects")
   }
 
   useEffect(() => {
@@ -68,7 +79,9 @@ export default function HeroSection() {
             size="lg"
             className="w-full rounded-full border-2 border-sky-700 px-6 py-5 text-base font-semibold text-sky-700 transition hover:bg-sky-700 hover:text-white focus:ring-4 focus:ring-sky-300 sm:w-auto sm:px-8 sm:py-6 sm:text-lg"
           >
-            <Link href="#projects">See my projects</Link>
+            <Link href="#projects" onClick={handleScrollToProjects}>
+              See my projects
+            </Link>
           </Button>
         </div>
         <Link
