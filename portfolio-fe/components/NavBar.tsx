@@ -74,7 +74,7 @@ export default function NavBar() {
           </span>
         </Link>
         <div className="flex gap-4 rounded-lg px-4 text-sm font-medium">
-          <Link className="rounded-md p-2 hover:bg-primary/10" href="">
+          <Link className="rounded-md p-2 hover:bg-primary/10" href="/about">
             About
           </Link>
           <Link
@@ -84,7 +84,7 @@ export default function NavBar() {
           >
             Projects
           </Link>
-          <Link className="rounded-md p-2 hover:bg-primary/10" href="">
+          <Link className="rounded-md p-2 hover:bg-primary/10" href="/contact">
             Contact
           </Link>
         </div>

@@ -1,17 +1,16 @@
 "use client"
 
 import Image from "next/image"
-import { useEffect, useState } from "react"
-import SkeletonAVT from "@/components/SkeletonAVT"
+import { SkeletonAVT } from "@/components/ui/skeleton"
 import { montserrat, roboto_mono } from "@/components/ui/font"
 import { Button } from "@/components/ui/button"
 import { Mouse } from "lucide-react"
 import Link from "next/link"
 import type { MouseEvent } from "react"
+import { Suspense } from "react"
+import { downloadCV } from "@/lib/utils"
 
 export default function HeroSection() {
-  const [isLoading, setIsLoading] = useState(true)
-
   const handleScrollToSection = (
     event: MouseEvent<HTMLAnchorElement>,
     sectionId: string
@@ -29,14 +28,6 @@ export default function HeroSection() {
   const handleScrollToProjects = (event: MouseEvent<HTMLAnchorElement>) => {
     handleScrollToSection(event, "projects")
   }
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 1000)
-
-    return () => clearTimeout(timer)
-  }, [])
 
   return (
     <section
@@ -64,14 +55,12 @@ export default function HeroSection() {
         </div>
         <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
           <Button
-            asChild
+            onClick={downloadCV}
             variant="outline"
             size="lg"
             className="w-full rounded-full border-2 border-sky-700 bg-radial-[at_50%_75%] from-sky-300 via-blue-500 to-indigo-900 to-90% px-6 py-5 text-base font-semibold text-white transition hover:scale-105 hover:text-white focus:ring-4 focus:ring-sky-300 sm:w-auto sm:px-8 sm:py-6 sm:text-lg"
           >
-            <Link href="/cv.pdf" target="_blank">
-              Download CV
-            </Link>
+            Download CV
           </Button>
           <Button
             asChild
@@ -95,9 +84,7 @@ export default function HeroSection() {
         </Link>
       </div>
       <div className="mx-auto w-full max-w-xs sm:max-w-sm lg:max-w-md">
-        {isLoading ? (
-          <SkeletonAVT />
-        ) : (
+        <Suspense fallback={<SkeletonAVT />}>
           <Image
             className="h-auto w-full rounded-full border-8 border-sky-700 object-cover"
             src="/avt.webp"
@@ -105,7 +92,7 @@ export default function HeroSection() {
             height={500}
             alt="Image of Phạm Tuấn Vũ"
           />
-        )}
+        </Suspense>
       </div>
     </section>
   )

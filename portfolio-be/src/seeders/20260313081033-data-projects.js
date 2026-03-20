@@ -46,6 +46,7 @@ export default {
           "Comprehensive Management Module: Implemented robust end-to-end CRUD functionalities to manage core academic entities (users, classes, subjects, semesters, lecturers, students, rooms, and training programs), streamlining administrative workflows.",
           "Bulk Data Processing: Developed Excel data import and export features, enabling efficient mass data entry for the PostgreSQL database and generating structured reports for system administrators."
         ],
+        role: 'Full Stack Developer (Frontend + Backend)',
         thumbnail_url: 'https://i.ibb.co/YBMKKP4s/Screenshot-19-3-2026-18724-localhost.jpg',
         github_url: '',
         start_date: new Date('2025-06'),

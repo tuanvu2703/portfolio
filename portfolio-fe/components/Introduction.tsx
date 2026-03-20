@@ -4,11 +4,28 @@ import Skill from "@/types/skill.type"
 import Image from "next/image"
 import { formatProjectMonthYear } from "@/lib/utils"
 import Link from "next/link"
+import { Suspense } from "react"
+import { SkeletonIMG } from "@/components/ui/skeleton"
 
 export default async function Introduction() {
   const [skills, projects] = await Promise.all([fetchSkills(), fetchProjects()])
 
-  const skillsByCategory = skills.reduce((groups, skill) => {
+  // Skills to exclude
+  const excludeSkills = [
+    "MongoDB",
+    "WebSocket",
+    "NestJS",
+    "Kotlin",
+    "Python",
+    "Spring",
+  ]
+
+  // Filter out excluded skills
+  const filteredSkills = skills.filter(
+    (skill) => !excludeSkills.includes(skill.name)
+  )
+
+  const skillsByCategory = filteredSkills.reduce((groups, skill) => {
     const category = skill.category?.trim() || "Others"
 
     if (!groups.has(category)) {
@@ -143,20 +160,29 @@ export default async function Introduction() {
               >
                 {project.thumbnail_url?.trim() && (
                   <div className="relative mb-4 aspect-video overflow-hidden rounded-xl border border-slate-200/80 dark:border-slate-700/70">
-                    <Image
-                      src={project.thumbnail_url}
-                      fill
-                      alt={`${project.title} preview`}
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
+                    <Suspense fallback={<SkeletonIMG />}>
+                      <Image
+                        src={project.thumbnail_url}
+                        fill
+                        alt={`${project.title} preview`}
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </Suspense>
                   </div>
                 )}
                 <h4 className="text-lg font-bold">{project.title}</h4>
-                <p className="mt-2 inline-flex items-center rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700 dark:border-sky-700/70 dark:bg-sky-950/50 dark:text-sky-300">
-                  {formatProjectMonthYear(project.start_date)} -{" "}
-                  {formatProjectMonthYear(project.end_date)}
-                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <p className="inline-flex items-center rounded-full border border-sky-200 bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700 dark:border-sky-700/70 dark:bg-sky-950/50 dark:text-sky-300">
+                    {formatProjectMonthYear(project.start_date)} -{" "}
+                    {formatProjectMonthYear(project.end_date)}
+                  </p>
+                  {project.role && (
+                    <p className="inline-flex items-center rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700 dark:border-amber-700/70 dark:bg-amber-950/50 dark:text-amber-300">
+                      {project.role}
+                    </p>
+                  )}
+                </div>
                 {project.description.length > 0 && (
                   <ul className="mt-3 list-inside list-disc space-y-1 text-sm leading-relaxed text-muted-foreground sm:text-base">
                     {project.description.map((item, index) => (

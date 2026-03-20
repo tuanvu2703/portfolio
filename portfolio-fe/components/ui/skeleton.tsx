@@ -11,3 +11,21 @@ function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 export { Skeleton }
+
+//
+export function SkeletonIMG() {
+  return (
+    <div className="flex items-center gap-4">
+      <Skeleton className="(max-width: 768px) 100vw, 50vw object-cover" />
+    </div>
+  )
+}
+
+//
+export function SkeletonAVT() {
+  return (
+    <div className="flex items-center gap-4">
+      <Skeleton className="h-125 w-125 rounded-full border-8" />
+    </div>
+  )
+}

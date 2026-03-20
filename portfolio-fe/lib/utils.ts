@@ -21,3 +21,12 @@ export const formatProjectMonthYear = (dateValue?: string) => {
 
   return `${month}/${year}`
 }
+
+export const downloadCV = () => {
+  const link = document.createElement("a")
+  link.href = "/CV-SoftwareEngineer.docx"
+  link.download = "CV-SoftwareEngineer.docx"
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}
