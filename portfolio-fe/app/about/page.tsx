@@ -1,9 +1,16 @@
-"use client"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import Image from "next/image"
 import Link from "next/link"
-import { downloadCV } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { Metadata } from "next"
+import { DownloadCVBTN } from "@/components/DownloadCVBTN"
+
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "Learn more about me, my background, and my passion for software development.",
+};
+
+
 // Sample Information Data
 const sampleInformation = {
   id: "1",
@@ -73,6 +80,7 @@ const funFacts = [
 
 export default function Page() {
   return (
+    
     <div className="min-h-screen from-slate-950 via-gray-900 to-slate-950 dark:bg-linear-to-br">
       {/* Navigation spacer */}
       <div className="h-20"></div>
@@ -180,12 +188,7 @@ export default function Page() {
           <div className="space-y-6">
             {/* CTA Buttons */}
             <div className="flex flex-col gap-4 pt-6 sm:flex-row">
-              <button
-                onClick={downloadCV}
-                className="inline-flex items-center justify-center rounded-lg border border-gray-600 px-6 py-4 font-semibold transition-all duration-300 hover:border-white hover:bg-gray-500 dark:text-gray-200"
-              >
-                ↓ Download My Resume
-              </button>
+              <DownloadCVBTN />
               <div className="flex gap-4">
                 {sampleInformation.contacts.github && (
                   <Link

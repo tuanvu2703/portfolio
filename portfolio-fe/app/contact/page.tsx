@@ -1,8 +1,11 @@
-"use client"
-
-import { useState } from "react"
-import { Copy, Check } from "lucide-react"
 import Link from "next/link"
+import { Metadata } from "next"
+import CopiedEmailBTN from "@/components/CopiedEmailBTN"
+
+export const metadata:Metadata = {
+  title: "Contact",
+  description: "Get in touch with me! Whether you have a question, want to collaborate, or just want to say hi, I would love to hear from you.",
+}
 
 const contactInfo = {
   email: "tuanvukg2703@gmail.com",
@@ -24,14 +27,6 @@ const contactInfo = {
 }
 
 export default function ContactPage() {
-  const [copied, setCopied] = useState(false)
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(contactInfo.email)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
-
   return (
     <div className="min-h-screen from-slate-950 via-gray-900 to-slate-950 dark:bg-linear-to-br">
       <main className="mx-auto max-w-4xl px-6 py-12 sm:px-8 lg:px-12">
@@ -64,14 +59,7 @@ export default function ContactPage() {
               >
                 {contactInfo.email}
               </a>
-              <button
-                onClick={handleCopyEmail}
-                className="ml-2 inline-flex cursor-pointer items-center gap-1 rounded-md p-2 text-sm transition-colors hover:bg-gray-700 hover:text-blue-400 dark:text-gray-400"
-                title="Copy email"
-              >
-                 {copied ? <Check size={16} /> : <Copy size={16} />}
-              </button>
-            
+            <CopiedEmailBTN email={contactInfo.email} />
             </p>
             <p>
               <strong>Phone:</strong>{" "}

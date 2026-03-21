@@ -1,0 +1,11 @@
+node_modules
+.next
+.git
+.gitignore
+README.md
+package-lock.json
+pnpm-lock.yaml
+.env.local
+.env
+dist
+build

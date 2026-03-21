@@ -1,0 +1,49 @@
+
+services:
+  # 1. Dịch vụ Database (PostgreSQL)
+  db:
+    image: postgres:15-alpine
+    container_name: portfolio_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: vu@postgres 
+      POSTGRES_DB: portfolio_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Lưu lại data khi tắt container
+
+  # 2. Dịch vụ Backend (Node + Express)
+  backend:
+    build: 
+      context: ./portfolio-be # Chỉ đường dẫn tới thư mục chứa Dockerfile của BE
+    container_name: portfolio_be
+    restart: always
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db # Yêu cầu DB phải chạy lên trước rồi BE mới được chạy
+    environment:
+      # Truyền biến môi trường cho Sequelize kết nối DB
+      # Lưu ý CỰC KỲ QUAN TRỌNG trong DevOps: host bây giờ là 'db' (tên service ở trên), không phải 'localhost'
+      - DB_HOST=db
+      - DB_USER=postgres
+      - DB_PASSWORD=vu@postgres
+      - DB_NAME=portfolio_db
+      - DB_PORT=5432
+
+  # 3. Dịch vụ Frontend (Next.js)
+  frontend:
+    build: 
+      context: ./portfolio-fe # Chỉ đường dẫn tới thư mục chứa Dockerfile của FE
+    container_name: portfolio_fe
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+# Khai báo volume để lưu trữ dữ liệu DB vĩnh viễn
+volumes:
+  postgres_data:
