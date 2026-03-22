@@ -7,11 +7,17 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { ZenTokyoZoo } from "@/components/ui/font"
 import type { MouseEvent } from "react"
+import { usePathname, useRouter } from "next/navigation"
+
+
 export default function NavBar() {
   const { theme, setTheme } = useTheme()
+  const pathname = usePathname()
+  const router = useRouter()
   // mounted dung de tranh hydration mismatch luc SSR/CSR.
   const [mounted, setMounted] = React.useState(false)
   const [isFullscreen, setIsFullscreen] = React.useState(false)
+  const [shouldScrollToProjects, setShouldScrollToProjects] = React.useState(false)
 
   React.useEffect(() => {
     // Danh dau component da mount o client.
@@ -29,7 +35,24 @@ export default function NavBar() {
     return () => document.removeEventListener("fullscreenchange", handleChange)
   }, [])
 
+  // Neu co flag shouldScrollToProjects va dang o trang chu thi scroll.
+  React.useEffect(() => {
+    if (shouldScrollToProjects && pathname === "/") {
+      // Dung timeout de dam bao trang da load xong truoc khi scroll.
+      const timer = setTimeout(() => {
+        window.history.replaceState(null, "", "/#projects")
+        const section = document.getElementById("projects")
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth", block: "start" })
+        }
+        setShouldScrollToProjects(false)
+      }, 50)
+      return () => clearTimeout(timer)
+    }
+  }, [shouldScrollToProjects, pathname])
+
   const toggleFullscreen = async () => {
+    
     // Neu chua fullscreen thi yeu cau vao fullscreen cho document.
     if (!document.fullscreenElement) {
       try {
@@ -61,7 +84,14 @@ export default function NavBar() {
   }
 
   const handleScrollToProjects = (event: MouseEvent<HTMLAnchorElement>) => {
-    handleScrollToSection(event, "projects")
+    event.preventDefault()
+    if (pathname === "/") {
+      handleScrollToSection(event, "projects")
+    } else {
+      // Neu khong o trang chu, chuyen ve trang chu roi scroll.
+      setShouldScrollToProjects(true)
+      router.push("/")
+    }
   }
   return (
     <Menubar className="sticky top-0 z-50 w-full border-none bg-background/70 p-7 shadow-none backdrop-blur-md backdrop-saturate-150">

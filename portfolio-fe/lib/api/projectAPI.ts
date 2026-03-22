@@ -1,7 +1,7 @@
 import Project from "@/types/project.type"
 
 export const fetchProjects = async (): Promise<Project[]> => {
-  const response = await fetch(`${process.env.BACKEND_URL}/projects`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/projects`, {
     cache: "no-store",
   })
 

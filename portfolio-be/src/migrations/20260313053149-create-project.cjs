@@ -1,22 +1,38 @@
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
-export default {
+module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Skills', {
+    await queryInterface.createTable('Projects', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      name: {
+      title: {
         type: Sequelize.STRING
       },
-      category: {
+      description: {
+        type: Sequelize.ARRAY(Sequelize.TEXT),
+        defaultValue: [], 
+      },
+      role: {
         type: Sequelize.STRING
       },
-      icon_url: {
+      thumbnail_url: {
         type: Sequelize.STRING
+      },
+      github_url: {
+        type: Sequelize.STRING
+      },
+      live_url: {
+        type: Sequelize.STRING
+      },
+      start_date: {
+        type: Sequelize.DATE
+      },
+      end_date: {
+        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,
@@ -29,6 +45,6 @@ export default {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Skills');
+    await queryInterface.dropTable('Projects');
   }
 };

@@ -4,6 +4,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 import { Metadata } from "next"
+import Footer from "@/components/Footer"
 
 export const metadata: Metadata = {
   title: {
@@ -31,6 +32,7 @@ export default function RootLayout({
         <ThemeProvider>
           <NavBar />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

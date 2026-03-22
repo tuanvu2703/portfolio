@@ -1,7 +1,7 @@
 "use strict";
 
 /** @type {import('sequelize-cli').Seeder} */
-export default {
+module.exports = {
   async up(queryInterface, Sequelize) {
     const projectskills = [
       // ==========================================

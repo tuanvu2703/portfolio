@@ -6,41 +6,50 @@ services:
     container_name: portfolio_db
     restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: vu@postgres 
-      POSTGRES_DB: portfolio_db
+      POSTGRES_USER: ${DB_USER} 
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data # Lưu lại data khi tắt container
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   # 2. Dịch vụ Backend (Node + Express)
   backend:
-    build: 
-      context: ./portfolio-be # Chỉ đường dẫn tới thư mục chứa Dockerfile của BE
+    build:
+      context: ./portfolio-be
     container_name: portfolio_be
     restart: always
     ports:
       - "5000:5000"
     depends_on:
-      - db # Yêu cầu DB phải chạy lên trước rồi BE mới được chạy
+      db:
+        condition: service_healthy
     environment:
-      # Truyền biến môi trường cho Sequelize kết nối DB
-      # Lưu ý CỰC KỲ QUAN TRỌNG trong DevOps: host bây giờ là 'db' (tên service ở trên), không phải 'localhost'
       - DB_HOST=db
-      - DB_USER=postgres
-      - DB_PASSWORD=vu@postgres
-      - DB_NAME=portfolio_db
-      - DB_PORT=5432
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
+    command: sh -c "npm run db:reset && npm start"
 
   # 3. Dịch vụ Frontend (Next.js)
   frontend:
-    build: 
-      context: ./portfolio-fe # Chỉ đường dẫn tới thư mục chứa Dockerfile của FE
+    build:
+      context: ./portfolio-fe
+      args:
+        NEXT_PUBLIC_BACKEND_URL: ${NEXT_PUBLIC_BACKEND_URL}
     container_name: portfolio_fe
     restart: always
     ports:
       - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL}
     depends_on:
       - backend
 
