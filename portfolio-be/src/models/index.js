@@ -16,7 +16,14 @@ const db = {};
 
 let sequelize;
 if (envConfig.use_env_variable) {
-  sequelize = new Sequelize(process.env[envConfig.use_env_variable], envConfig);
+  const connectionUrl = process.env[envConfig.use_env_variable];
+  if (!connectionUrl) {
+    throw new Error(
+      `Missing required environment variable: ${envConfig.use_env_variable}. ` +
+      'Set this variable in your deployment environment (e.g. Render).'
+    );
+  }
+  sequelize = new Sequelize(connectionUrl, envConfig);
 } else {
   sequelize = new Sequelize(envConfig.database, envConfig.username, envConfig.password, envConfig);
 }

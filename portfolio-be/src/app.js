@@ -10,7 +10,10 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin: ['portfolio-9dklxusg4-phamtuanvukg2703s-projects.vercel.app', 'http://localhost:3000'], // Thay bằng domain Vercel sau khi deploy FE
+  credentials: true
+}));
 app.use(express.json()); // Để đọc được body kiểu JSON
 app.use(express.urlencoded({ extended: true }));
 
