@@ -36,7 +36,7 @@ export default function HeroSection() {
     >
       <div className="my-auto text-center lg:text-left">
         <div className="grid gap-3">
-          <h3 className="text-base font-semibold tracking-[0.16em] text-red-700 uppercase sm:text-lg lg:text-xl dark:text-sky-300">
+          <h3 className="text-base font-semibold tracking-[0.16em] text-sky-700 uppercase sm:text-lg lg:text-xl dark:text-sky-300">
             Welcome to my portfolio!
           </h3>
           <h2
