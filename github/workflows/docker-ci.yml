@@ -1,0 +1,33 @@
+name: Build and Push Docker Image
+
+# Hành động này sẽ chạy khi có code mới được push lên nhánh "main"
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # Chạy trên một máy ảo Ubuntu của GitHub
+
+    steps:
+      # 1. Tải code của bạn từ GitHub về máy ảo này
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Đăng nhập vào Docker Hub bằng thông tin đã cấu hình ở Bước 2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # 3. Chạy lệnh build image và push lên Docker Hub
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: . # Tìm file Dockerfile ở thư mục gốc
+          push: true
+          # Đổi "ten-ung-dung" thành tên bạn muốn. 
+          # Ví dụ: thiennguyen/portfolio-be:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/portfolio:latest
